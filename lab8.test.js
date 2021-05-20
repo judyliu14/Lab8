@@ -124,21 +124,20 @@ describe("Basic user flow for SPA ", () => {
     expect(header).toBe("Journal Entries");
   });
   // define and implement test13: On the home page the <body> element should not have any class attribute
-  it("Test13: Clicking the back button once, bring user back to home page", async () => {
+  it("Test13: check body element", async () => {
     const actual_classList = await page.$eval("body", (entries) => {
       return entries.classList.length;
     });
     expect(actual_classList).toBe(0);
-  });
+  }, 10000);
 
   // define and implement test14: Verify the url is correct when clicking on the second entry
   it("Test14: Url correct when clicking on the second entry", async () => {
-    const entries = await page.$$("journal-entry");
-    await entries[1].click();
-
+    await page.$$("journal-entry")[1].click();
+    // await entries[1].click();
     const urlTwo = await page.url();
     expect(urlTwo).toBe("http://127.0.0.1:5500/#entry2");
-  });
+  }, 20000);
 
   // define and implement test15: Verify the title is current when clicking on the second entry
   it("Test15: Second entry title", async () => {
@@ -146,7 +145,7 @@ describe("Basic user flow for SPA ", () => {
       return entries.innerHTML;
     });
     expect(header).toBe("Entry 2");
-  }, 10000);
+  });
 
   // define and implement test16: Verify the entry page contents is correct when clicking on the second entry
   it("Test16: Second entry contents", async () => {
@@ -166,7 +165,14 @@ describe("Basic user flow for SPA ", () => {
     });
     expect(actual_entry).toEqual(exp_entry);
   }, 10000);
+
   // create your own test 17
+  it("Test17: Clicking the back button, new URL should be /", async () => {
+    // implement test10: Clicking on the back button should update the URL to contain ‘/#entry1’
+    await page.goBack();
+    const url = await page.url();
+    expect(url).toBe("http://127.0.0.1:5500/");
+  });
 
   // create your own test 18
 
