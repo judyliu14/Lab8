@@ -1,9 +1,11 @@
 # Lab8_Starter
 
+Name: Judy Liu, Thomas Garry
+
 ## Check your understanding q's (FILL OUT)
 1. In your own words: Where would you fit your automated tests in your Bujo project development pipeline? (just write the letter)
 
-1, 2, 3
+Within a Github action that runs whenever code is pushed. (1) It avoids testing too much and testing too little. Pushing the code is a good checkpoint for testing the application.
 
 2. Would you use a unit test to test the “message” feature of a messaging application? Why or why not? For this question, assume the “message” feature allows a user to write and send a message to another user.
 
@@ -19,4 +21,4 @@ It means it will run the tests without a browser UI.
 
 5. What would your beforeAll callback look like if you wanted to start from the settings page before every test case?
 
-pushToHistory("settings", 0);
+Assuming updating the url directly does not work, we can navigate to the setting page by manually click on the settings element in the home page. In this case we can use the code: await page.click("img");
